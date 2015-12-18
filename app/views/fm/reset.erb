@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="uk-height-1-1">
+  <head>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <title>Reset | RFM</title>
+    <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.2/css/uikit.almost-flat.min.css">
+  </head>
+  <body class="uk-align-center uk-height-1-1 uk-vertical-align uk-container" style="margin:auto">
+    <div class="uk-vertical-align-middle uk-grid uk-align-center">
+      <h3 class="uk-width-1-1 uk-width-large-1-2">
+        Fill in the form below to reset your password. An email will be sent to your registered email address to confirm
+        the change.
+      </h3>
+      <form class="uk-width-1-1 uk-form uk-block uk-width-large-1-2 uk-text-center" action="/reset" method="post">
+        <div class="uk-form-row uk-block-small">
+          <label for="email" class="uk-form-label uk-text-large"></label>
+          <input id="email" class="uk-form-large uk-width-small-2-3 uk-width-medium-3-5" type="email" placeholder="name@site.com" required>
+        </div>
+        <div class="uk-form-row uk-block-small">
+          <label for="pass" class="uk-form-label uk-text-large"></label>
+          <input id="pass" class="uk-form-large uk-width-small-2-3 uk-width-medium-3-5" type="password" placeholder="New password" required>
+        </div>
+        <div class="uk-form-row uk-block-small">
+          <label for="confirm" class="uk-form-label uk-text-large"></label>
+          <input id="confirm" class="uk-form-large uk-width-small-2-3 uk-width-medium-3-5" type="password" placeholder="Confirm password" required>
+        </div>
+        <div class="uk-form-row uk-text-center uk-block-small">
+          <input type="submit" style="color:white;" class=" uk-width-small-2-3 uk-width-medium-3-5 uk-button-primary uk-button uk-button-large" value="Go!">
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.2/js/uikit.min.js"></script>
+</html>

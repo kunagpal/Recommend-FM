@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <title>Recommend FM</title>
+    <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.2/css/uikit.almost-flat.min.css">
+  </head>
+  <body>
+    <nav class="uk-navbar data-uk-sticky">
+      <a href="#off" data-uk-offcanvas class="uk-navbar-toggle uk-visible-small"><i class="uk-icon-large"></i></a>
+      <span class="uk-navbar-brand">Recommend FM</span>
+      <ul class="uk-navbar-nav uk-hidden-small">
+        <li><a>Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+      <div id="off" class="uk-offcanvas">
+        <div class="uk-offcanvas-bar">
+          <ul class="uk-nav uk-nav-offcanvas">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="uk-navbar-nav uk-navbar-flip">
+        <li class="uk-button-dropdown-large" data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false">
+          <a>Sign in / up</a>
+          <div class="uk-dropdown">
+            <form class="uk-form" action="/" method="post">
+              <div class="uk-form-row">
+                <label for="email" class="uk-form-label">Email:</label>
+                <input id="email" class="uk-width-1-1 uk-form-large" type="email" placeholder="name@site.com" required>
+              </div>
+              <div class="uk-form-row">
+                <label for="pass" class="uk-form-label">Password:</label>
+                <input id="pass" class="uk-width-1-1 uk-form-large" type="password" placeholder="Password" required>
+              </div>
+              <div class="uk-form-row">
+                <input type="submit" style="color:white" class="uk-width-1-1 uk-button uk-button-primary uk-button-large" value="Go!">
+              </div>
+              <div class="uk-form-row uk-text-small">
+                <label class="uk-float-left"><input type="checkbox" class="uk-text-middle"> Remember</label>
+                <a class="uk-float-right uk-link-muted" href="/forgot">Forgot Password?</a>
+              </div>
+            </form>
+            <hr class="uk-grid-divider uk-visible-small">
+            <p>Or, you may login with one of your social accounts.</p>
+            <ul class="uk-grid-width-1-3 uk-grid">
+              <li><a href="/facebook"><i class="uk-icon-facebook-official uk-icon-large" style="color:#3B5998;"></i></a></li>
+              <li><a href="/google"><i class="uk-icon-google-plus-square uk-icon-large" style="color:#DC4E41;"></i></a></li>
+              <li><a href="/twitter"><i class="uk-icon-twitter-square uk-icon-large" style="color:#00ACED;"></i></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <section class="uk-text-center uk-block">
+      <h1 class="uk-heading-large uk-vertical-align-middle">Recommend FM</h1>
+      <img src="http://res.cloudinary.com/kunagpal/back.png">
+      <h3 class="uk-text-center uk-heading-small">Under construction, coming soon enough...</h3>
+    </section>
+    <section id="about">
+
+    </section>
+    <section id="privacy">
+
+    </section>
+    <footer class="uk-text-large uk-text-primary uk-text-center uk-block-secondary uk-position-bottom uk-block uk-block-large uk-contrast">
+      <a style="color:floralwhite" href="http://github.com/kunagpal/recommend-fm" target="_blank">GitHub</a>
+      &nbsp;|&nbsp;
+      <a style="color:whitesmoke" href="mailto:recommendfm@gmail.com">Contact</a>
+    </footer>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.2/js/uikit.min.js"></script>
+</html>
