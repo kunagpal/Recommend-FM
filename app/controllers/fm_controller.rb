@@ -31,4 +31,15 @@ class FmController < ApplicationController
 
   end
 
+  def logout
+  end
+
+  def email
+  end
+
+  def password
+  end
+
+  def delete
+  end
 end

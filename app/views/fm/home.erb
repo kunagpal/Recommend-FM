@@ -8,9 +8,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.almost-flat.min.css">
   </head>
-  <body>
-
+  <body class="uk-height-viewport">
+    <nav class="uk-navbar uk-navbar-attached uk-secondary">
+      <ul class="uk-navbar-nav">
+        <li>
+          <form class="uk-form">
+            <input id="search" class="uk-form-large" placeholder="Search by artist, band, etc...">
+            <a id="go" class="uk-button uk-button-large"><i class="uk-icon-search uk-icon"></i></a>
+          </form>
+        </li>
+      </ul>
+      <ul class="uk-navbar-nav uk-navbar-flip">
+        <li class="uk-button-dropdown-large" data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="true">
+          <a><i class="uk-icon-cog uk-icon-small"></i>&nbsp;&nbsp;<span class="uk-hidden-small">Settings</span></a>
+          <div class="uk-dropdown">
+            <div class="uk-form">
+              <div class="uk-form-row" data-uk-margin>
+                <label for="email" class="uk-form-label">Email</label>
+                <input id="email" class="uk-width-1-1 uk-form-large" type="email" placeholder="<%= %>" required>
+                <button id="account" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Go!</button>
+              </div>
+              <div class="uk-form-row" data-uk-margin>
+                <label for="pass" class="uk-form-label">Change password</label>
+                <input id="pass" class="uk-width-1-1 uk-form-large" type="password" placeholder="Current Password" required>
+                <input id="pass" class="uk-width-1-1 uk-form-large" type="password" placeholder="New Password" required>
+                <input id="pass" class="uk-width-1-1 uk-form-large" type="password" placeholder="Confirm Password" required>
+                <button id="key" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Go!</button>
+              </div>
+              <hr class="uk-grid-divider">
+              <div class="uk-form-row" data-uk-margin>
+                <button id="del" class="uk-width-1-1 uk-button uk-button-danger uk-button-large">Delete account</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="/logout"><i class="uk-icon-sign-out uk-icon-small"></i> Logout</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
+      <div class="uk-width-medium-1-2 uk-panel-box uk-panel-header uk-block">
+        <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-star uk-icon-lage"></i> The artist</h3>
+      </div>
+      <div class="uk-width-medium-1-2 uk-panel-box uk-panel-header uk-block">
+        <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-history uk-icon-lage"></i> Previous searches</h3>
+      </div>
+      <div class="uk-width-1-1 uk-panel-box uk-panel-header uk-block">
+        <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-group uk-icon-lage"></i> You may also like...</h3>
+      </div>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
+  <script>
+    $(document).ready();
+  </script>
 </html>
