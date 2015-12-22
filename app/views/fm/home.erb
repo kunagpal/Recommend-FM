@@ -50,18 +50,34 @@
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
       <div class="uk-width-medium-1-2 uk-panel-box uk-panel-header uk-block">
         <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-star uk-icon-lage"></i> The artist</h3>
+        <p id="artist"></p>
       </div>
       <div class="uk-width-medium-1-2 uk-panel-box uk-panel-header uk-block">
         <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-history uk-icon-lage"></i> Previous searches</h3>
+        <p id="hist"></p>
       </div>
       <div class="uk-width-1-1 uk-panel-box uk-panel-header uk-block">
         <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-group uk-icon-lage"></i> You may also like...</h3>
+        <p id="other"></p>
       </div>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
   <script>
-    $(document).ready();
+    $(document).ready(function(){
+      $('#go').click(function(){
+        $.get('http://ws.audioscrobbler.com/2.0/', {format: 'json', method: 'artist.getInfo', api_key: '1ca2cf614eeaa185c2b61753b434b599'}, function(res, status) {
+          if (status)
+          {
+            $('artist').html(res);
+          }
+          else
+          {
+
+          }
+        });
+      });
+    });
   </script>
 </html>
