@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'fm#index'
-  get '/home' => 'fm#home'
-  get '/privacy' => 'fm#privacy'
-  get '/forgot' => 'fm#forgot'
-  get '/settings' => 'fm#setings'
-  get '/reset' => 'fm#reset'
+  get 'home' => 'fm#home'
+  get 'privacy' => 'fm#privacy'
+  get 'forgot' => 'fm#forgot'
+  get 'settings' => 'fm#setings'
+  get 'reset' => 'fm#reset'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -55,5 +55,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  get '/*all' => redirect('/')
+  get '*all' => redirect('/')
 end

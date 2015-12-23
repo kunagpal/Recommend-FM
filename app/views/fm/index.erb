@@ -7,20 +7,21 @@
     <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/components/sticky.almost-flat.min.css">
   </head>
   <body>
-    <nav class="uk-navbar">
+    <nav class="uk-navbar uk-navbar-attached" data-uk-sticky>
       <a href="#off" data-uk-offcanvas class="uk-navbar-toggle uk-visible-small"><i class="uk-icon-large"></i></a>
       <span class="uk-navbar-brand">Recommend FM</span>
-      <ul class="uk-navbar-nav uk-hidden-small" data-uk-scrollspy-nav="{smoothscroll: true}">
-        <li><a href="">Home</a></li>
+      <ul class="uk-navbar-nav uk-hidden-small" data-uk-scrollspy-nav="{closest:'li',smoothscroll:true}">
+        <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#privacy">Privacy</a></li>
       </ul>
       <div id="off" class="uk-offcanvas">
         <div class="uk-offcanvas-bar">
           <ul class="uk-nav uk-nav-offcanvas">
-            <li><a href="#">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#privacy">Privacy</a></li>
           </ul>
@@ -28,7 +29,7 @@
       </div>
       <ul class="uk-navbar-nav uk-navbar-flip">
         <li data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="true">
-          <a><i class="uk-icon-sign-in"></i>&nbsp;&nbsp;Sign in / up</a>
+          <a><i class="uk-icon-sign-in uk-icon-small"></i>&nbsp;&nbsp;Sign in / up</a>
           <div class="uk-dropdown">
             <form class="uk-form" action="/" method="post">
               <div class="uk-form-row">
@@ -58,43 +59,52 @@
         </li>
       </ul>
     </nav>
-    <section id="" class="uk-block uk-block-large uk-height-viewport uk-text-center">
-      <h1 class="uk-heading-large uk-vertical-align-middle">Recommend FM</h1>
-      <img src="http://res.cloudinary.com/kunagpal/back.png">
-      <h3 class="uk-text-center uk-heading-small">Insert random quotation here...</h3>
+    <section id="home" class="uk-block uk-block-large uk-height-viewport uk-text-center uk-vertical-align">
+      <div class="uk-vertical-align-middle">
+        <h1 class="uk-heading-large">Recommend FM</h1>
+        <img src="http://res.cloudinary.com/kunagpal/back.png">
+        <h3 class="uk-text-center uk-heading-small">Insert random quotation here...</h3>
+      </div>
     </section>
     <hr class="uk-grid-divider">
-    <section id="about" class="uk-height-viewport uk-flex uk-flex-middle uk-container uk-container-center">
-      Recommend FM is a pilot project that allows users to dive deep into a musical world, exploring artists, their
-      music, and their associated similarities and recommendations. Expand and refine your musical tastes at the same
-      time, all in one place.<br><br>
-      Sign up and get stated today!
+    <section id="about" class="uk-height-viewport uk-container uk-container-center uk-vertical-align">
+      <div class="uk-vertical-align-middle">
+        <h1 class="uk-text-center">About</h1>
+        <h3 class="uk-container uk-container-center">Recommend FM is a pilot project that allows users to dive deep into
+          a musical world, exploring artists, their music, and their associated similarities and recommendations. Expand
+          and refine your musical tastes at the same time, all in one place.<br><br>Sign up and get stated today!</h3>
+      </div>
     </section>
     <hr class="uk-grid-divider">
-    <section id="privacy" class="uk-container uk-container-center uk-height-viewport uk-grid uk-flex uk-flex-middle" data-uk-grid-match="{row:false}">
-      <div class="uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space">
-        <p class="uk-panel-title uk-text-center"><i class="uk-icon-archive uk-icon-large"></i> Cookies</p>
-        <ul class="uk-list uk-list-space uk-margin-left">
-          <li>Smoother experience</li>
-          <li>User session tracking</li>
-          <li>No usage history recorded locally</li>
-        </ul>
-      </div>
-      <div class="uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space ">
-        <p class="uk-panel-title uk-text-center"><i class="uk-icon-user-secret uk-icon-large"></i> Confidentiality</p>
-        <ul class="uk-list uk-list-space uk-margin-left">
-          <li>User details are not distributed</li>
-          <li>Strict anti spam policy</li>
-          <li>Details processed on a need basis only</li>
-        </ul>
-      </div>
-      <div class="uk-width-1-1 uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space">
-        <p class="uk-panel-title uk-text-center"><i class="uk-icon-lock uk-icon-large"></i> Security</p>
-        <ul class="uk-list uk-list-space uk-margin-left">
-          <li>Safe password storage</li>
-          <li>Failsafe mechanisms to thwart attackers</li>
-          <li>Periodic upkeep to maintain standards</li>
-        </ul>
+    <section id="privacy" class="uk-height-viewport uk-container uk-container-center uk-vertical-align">
+      <div class="uk-vertical-align-middle uk-container uk-container-center">
+        <h1 class="uk-text-center">Privacy</h1>
+        <div class="uk-grid uk-container uk-container-center" data-uk-grid-match="{row:false}">
+          <div class="uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space">
+            <p class="uk-panel-title uk-text-center"><i class="uk-icon-archive uk-icon-large"></i> Cookies</p>
+            <ul class="uk-list uk-list-space uk-margin-left">
+              <li><h4>Smoother experience</h4></li>
+              <li><h4>User session tracking</h4></li>
+              <li><h4>No usage history recorded locally</h4></li>
+            </ul>
+          </div>
+          <div class="uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space">
+            <p class="uk-panel-title uk-text-center"><i class="uk-icon-user-secret uk-icon-large"></i> Confidentiality</p>
+            <ul class="uk-list uk-list-space uk-margin-left">
+              <li><h4>User details are not distributed</h4></li>
+              <li><h4>Strict anti spam policy</h4></li>
+              <li><h4>Details processed on a need basis only</h4></li>
+            </ul>
+          </div>
+          <div class="uk-width-1-1 uk-width-medium-1-2 uk-width-large-1-3 uk-panel uk-panel-header uk-panel-space">
+            <p class="uk-panel-title uk-text-center"><i class="uk-icon-lock uk-icon-large"></i> Security</p>
+            <ul class="uk-list uk-list-space uk-margin-left">
+              <li><h4>Safe password storage</h4></li>
+              <li><h4>Failsafe mechanisms to thwart attackers</h4></li>
+              <li><h4>Periodic upkeep to maintain standards</h4></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
     <footer class="uk-text-center uk-block-secondary uk-contrast">
@@ -103,10 +113,10 @@
         <li><a href="mailto:recommendfm@gmail.com"><i class="uk-icon-envelope uk-icon-medium"></i></a></li>
         <li><a href="https://twitter.com/recommendfm"><i class="uk-icon-twitter uk-icon-medium"></i></a></li>
       </ul>
-      <br><br>
       <a href="#" data-uk-smooth-scroll><i class="uk-icon-chevron-up uk-icon-large"></i></a>
     </footer>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/sticky.min.js"></script>
 </html>
