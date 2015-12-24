@@ -46,9 +46,10 @@
       </ul>
     </nav>
     <div class="uk-vertical-align uk-margin-large-top">
-      <div class="uk-grid-medium uk-grid uk-vertical-align-middle uk-container uk-container-center uk-width-viewport" data-uk-grid-margin>
+      <div class="uk-grid-medium uk-grid uk-vertical-align-middle uk-container uk-container-center uk-width-viewport" data-uk-grid-margin data-uk-grid-match>
         <div class="uk-width-medium-1-2 uk-panel-box uk-block-large">
-          <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-star uk-icon-medium"></i> The artist</h3>
+          <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-star uk-icon-medium"></i> <span id="art" >The artist</span></h3>
+          <img id="img" src="">
           <p id="artist">
 
           </p>
@@ -73,16 +74,23 @@
   <script>
     $(document).ready(function(){
       $('#go').click(function(){
-        $.get('http://ws.audioscrobbler.com/2.0/', {format: 'json', method: 'artist.getInfo', api_key: '1ca2cf614eeaa185c2b61753b434b599'}, function(res, status) {
-          if (status)
-          {
-            $('artist').html(res);
-          }
-          else
-          {
-
-          }
-        });
+        if($('#search').val())
+        {
+          $.get('http://ws.audioscrobbler.com/2.0/',{artist:$('#search').val(),format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'},function(res,status){
+            if (status === 'success')
+            {
+              res = res.artist;
+              $('#art').text(res.name);
+              $('#artist').text(res.bio.summary);
+              $('#img').text(res.image[2]['#text']);
+              //res.similar.artist.map(function(arg){arg.map(function(x){return x['#text'];})});
+              res.tags = res.tags.tag;
+              //res.tags.map(function(arg){return arg.name;});
+              res.bio = res.bio.summary;
+              console.log(res);
+            }
+          });
+        }
       });
     });
   </script>
