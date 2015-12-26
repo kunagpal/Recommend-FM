@@ -7,12 +7,13 @@
     <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/components/sticky.almost-flat.min.css">
   </head>
   <body class="uk-height-viewport">
-    <nav class="uk-navbar uk-navbar-attached">
+    <nav class="uk-navbar uk-navbar-attached" data-uk-sticky>
       <ul class="uk-navbar-nav">
         <li>
-          <div class="uk-form">
+          <div class="uk-form" data-uk-search>
             <input id="search" class="uk-form-large" placeholder="Search by artist, band, etc...">
             <a id="go" class="uk-button uk-button-large"><i class="uk-icon-search uk-icon"></i></a>
           </div>
@@ -61,29 +62,27 @@
         <div class="uk-width-1-1 uk-panel-box">
           <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-group uk-icon-medium"></i> You may also like...</h3>
           <div data-uk-grid-margin class="uk-grid uk-grid-large uk-grid-width-mini-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5 uk-text-center">
-            <div class="other"><img src=""><h3 class="name uk-margin-remove"></h3></div><div class="other"><img src=""><h3 class="name uk-margin-remove"></h3></div>
-            <div class="other"><img src=""><h3 class="name uk-margin-remove"></h3></div><div class="other"><img src=""><h3 class="name uk-margin-remove"></h3></div>
-            <div class="other"><img src=""><h3 class="name uk-margin-remove"></h3></div>
+            <a class="other"><img src=""><h3 class="name uk-margin-remove"></h3></a><a class="other"><img src=""><h3 class="name uk-margin-remove"></h3></a>
+            <a class="other"><img src=""><h3 class="name uk-margin-remove"></h3></a><a class="other"><img src=""><h3 class="name uk-margin-remove"></h3></a>
+            <a class="other"><img src=""><h3 class="name uk-margin-remove"></h3></a>
           </div>
         </div>
       </div>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
   <script>
     $(document).ready(function(){
-      var ref = {'0': 'Currently not on tour.', '1': 'Currently on tour.'}, other = $('.other');
-      $('#go').click(function(){
-        if($('#search').val()){
-          $.get('http://ws.audioscrobbler.com/2.0/',{artist:$('#search').val(),format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'},function(res,status){
+      var ref = {'0': 'Currently not on tour.', '1': 'Currently on tour.'}, other = $('.other'), search = $('#search'),go=$('#go');
+      go.click(function(){
+        if(search.val()){
+          $.get('https://ws.audioscrobbler.com/2.0/',{artist:search.val(),format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'},function(res,status){
             if(status==='success'){
               res=res.artist;
               $('#art').text(res.name);
               $('#artist').text(res.bio.summary.split(' <a')[0] || 'No description found!');
               $('#img').attr('src', res.image[2]['#text']);
               res.tags = res.tags.tag.map(function(arg){return ' ' + arg.name.toLowerCase();});
-              console.log(res.tags);
               other.children('img').map(function(i){this.src = res.similar.artist[i].image[2]['#text'] || '';});
               other.children('h3').map(function(i){this.innerText = res.similar.artist[i].name || '';});
               $('#info').text(ref[res.ontour]);
@@ -92,7 +91,10 @@
           });
         }
       });
-      $('#search').keypress(function(arg){if(arg.which === 13){$('#go').click();}});
+      search.keypress(function(arg){if(arg.which===13){go.click();}});
+      other.click(function(){search.val(this.innerText);go.click();});
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/sticky.min.js"></script>
 </html>
