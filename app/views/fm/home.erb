@@ -7,7 +7,6 @@
     <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.almost-flat.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/components/sticky.almost-flat.min.css">
   </head>
   <body class="uk-height-viewport">
     <nav class="uk-navbar uk-navbar-attached" data-uk-sticky>
@@ -57,7 +56,7 @@
         </div>
         <div class="uk-width-medium-1-2 uk-panel-box">
           <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-history uk-icon-medium"></i> Previous searches</h3>
-          <p id="hist"></p>
+          <ul id="hist" class="uk-list uk-list line uk-list-striped ul-list-space uk-text-center uk-scrollable-text"></ul>
         </div>
         <div class="uk-width-1-1 uk-panel-box">
           <h3 class="uk-panel-title uk-text-center"><i class="uk-icon-group uk-icon-medium"></i> You may also like...</h3>
@@ -73,20 +72,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      var ref = {'0': 'Currently not on tour.', '1': 'Currently on tour.'}, other = $('.other'), search = $('#search'),go=$('#go');
+      var ref={'0':'Currently not on tour.','1':'Currently on tour.'},other=$('.other'),search=$('#search'),go=$('#go'),art=$('#art'),artist=$('#artist'),img=$('#img'),info=$('#info'),tag=$('#tag');
+      var image=other.children('img'),cap=other.children('h3'),hist=$('#hist'),op={format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'};
       go.click(function(){
         if(search.val()){
-          $.get('https://ws.audioscrobbler.com/2.0/',{artist:search.val(),format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'},function(res,status){
+          op.artist=search.val();
+          $.get('https://ws.audioscrobbler.com/2.0/',op,function(res,status){
             if(status==='success'){
               res=res.artist;
-              $('#art').text(res.name);
-              $('#artist').text(res.bio.summary.split(' <a')[0] || 'No description found!');
-              $('#img').attr('src', res.image[2]['#text']);
+              art.text(res.name);
+              artist.text(res.bio.summary.split(' <a')[0] || 'No description found!');
+              img.attr('src', res.image[2]['#text']);
               res.tags = res.tags.tag.map(function(arg){return ' ' + arg.name.toLowerCase();});
-              other.children('img').map(function(i){this.src = res.similar.artist[i].image[2]['#text'] || '';});
-              other.children('h3').map(function(i){this.innerText = res.similar.artist[i].name || '';});
-              $('#info').text(ref[res.ontour]);
-              $('#tag').html('<em>Tags:</em> ' + res.tags);
+              image.map(function(i){this.src = res.similar.artist[i].image[2]['#text'] || '';});
+              cap.map(function(i){this.innerText = res.similar.artist[i].name || '';});
+              info.text(ref[res.ontour]);
+              tag.html('<em>Tags:</em> ' + res.tags);
+              hist.prepend('<li>' + res.name + '</li>');
             }
           });
         }
@@ -97,4 +99,5 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/sticky.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/components/sticky.almost-flat.min.css">
 </html>
