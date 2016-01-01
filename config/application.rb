@@ -33,9 +33,24 @@ module FM
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.insert_before(Rack::Sendfile, Rack::Deflater)
+    # config.middleware.insert_before(Rack::Sendfile, Rack::Deflater)
+
     config.generators do |g|
       g.orm :mongoid
     end
+
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+        address:              'smtp.gmail.com',
+        port:                 587,
+        domain:               'gmail.com',
+        user_name:            'recommendfm@gmail.com',
+        password:             ENV['KEY'],
+        authentication:       'login',
+        enable_starttls_auto: true
+    }
+
+    ActionMailer::Base.default :content_type => "text/html"
   end
 end

@@ -83,12 +83,14 @@
               art.text(res.name);
               artist.text(res.bio.summary.split(' <a')[0] || 'No description found!');
               img.attr('src', res.image[2]['#text']);
-              res.tags = res.tags.tag.map(function(arg){return ' ' + arg.name.toLowerCase();});
-              image.map(function(i){this.src = res.similar.artist[i].image[2]['#text'] || '';});
-              cap.map(function(i){this.innerText = res.similar.artist[i].name || '';});
               info.text(ref[res.ontour]);
-              tag.html('<em>Tags:</em> ' + res.tags);
               hist.prepend('<li>' + res.name + '</li>');
+              res.tags = res.tags.tag.map(function(arg){return ' ' + arg.name.toLowerCase();});
+              tag.html('<em>Tags:</em> ' + res.tags);
+              for(i=0;i<5;++i){
+                image[i].src = res.similar.artist[i].image[2]['#text'] || '';
+                cap[i].innerText = res.similar.artist[i].name || '';
+              }
             }
           });
         }
