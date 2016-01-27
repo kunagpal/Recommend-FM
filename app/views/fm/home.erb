@@ -7,6 +7,13 @@
     <link rel="icon" href="http://res.cloudinary.com/kunagpal/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.almost-flat.min.css">
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-72991817-1', 'auto');ga('send', 'pageview');
+    </script>
   </head>
   <body class="uk-height-viewport">
     <nav class="uk-navbar uk-navbar-attached" data-uk-sticky>
@@ -72,10 +79,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      var ref={'0':'Currently not on tour.','1':'Currently on tour.'},other=$('.other'),search=$('#search'),go=$('#go'),art=$('#art'),artist=$('#artist'),img=$('#img'),info=$('#info'),tag=$('#tag');
-      var image=other.children('img'),cap=other.children('h3'),hist=$('#hist'),op={format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'};
+      var ref={'0':'Currently not on tour.','1':'Currently on tour.'},other=$('.other'),search=$('#search'),go=$('#go'),temp,
+      art=$('#art'),artist=$('#artist'),img=$('#img'),info=$('#info'),tag=$('#tag'),image=other.children('img'),cap=other.children('h3'),
+      hist=$('#hist'),op={format:'json',method:'artist.getInfo',api_key:'1ca2cf614eeaa185c2b61753b434b599',autocorrect:1,language:'eng'};
+      past=function(arg){search.val(arg.innerText);go.click();};
       go.click(function(){
-        if(search.val()){
+        temp=search.val();
+        if(temp && temp != art.text()){
           op.artist=search.val();
           $.get('https://ws.audioscrobbler.com/2.0/',op,function(res,status){
             if(status==='success'){
@@ -84,7 +94,7 @@
               artist.text(res.bio.summary.split(' <a')[0] || 'No description found!');
               img.attr('src', res.image[2]['#text']);
               info.text(ref[res.ontour]);
-              hist.prepend('<li>' + res.name + '</li>');
+              if((hist.children[0] || {}).innerText != res.name) hist.prepend('<li onclick="past(this)"><a>' + res.name + '</a></li>');
               res.tags = res.tags.tag.map(function(arg){return ' ' + arg.name.toLowerCase();});
               tag.html('<em>Tags:</em> ' + res.tags);
               for(i=0;i<5;++i){
@@ -95,8 +105,7 @@
           });
         }
       });
-      search.keypress(function(arg){if(arg.which===13){go.click();}});
-      other.click(function(){search.val(this.innerText);go.click();});
+      search.keypress(function(arg){if(arg.which===13){go.click();}});other.click(function(){search.val(this.innerText);go.click();});
     });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/uikit.min.js"></script>
