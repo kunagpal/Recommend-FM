@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
 
   def set_raven_context
     Raven.user_context(user_id: session[:current_user_id])
-    Raven.extra_context(params: params.to_hash, url: request_url)
+    Raven.extra_context(params: params.to_hash)
   end
 end
