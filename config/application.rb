@@ -35,8 +35,16 @@ module FM
 
     # config.middleware.insert_before(Rack::Sendfile, Rack::Deflater)
 
+    config.filter_parameters << :password
+
     config.generators do |g|
       g.orm :mongoid
+    end
+
+    Raven.configure do |config|
+      config.santize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+      config.dsn = ENV['SENTRY_DSN']
+      config.environments = %w[staging production]
     end
 
     config.action_mailer.delivery_method = :smtp
