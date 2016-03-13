@@ -42,7 +42,7 @@ module FM
     end
 
     Raven.configure do |config|
-      config.santize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+      config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
       config.dsn = ENV['SENTRY_DSN']
       config.environments = %w[staging production]
     end
