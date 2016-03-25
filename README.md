@@ -12,10 +12,10 @@
 
 ##### Installation instructions
 
-* Download and install the latest edition of Ruby from [here](http://rubyinstaller.org/downloads/).
-* Download and install the latest edition of the Ruby SDK from [here](http://rubyinstaller.org/downloads/).
-* Bind the SDK to the current Ruby Installation and the system path by referring the following [instructions](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
-* Download and install the latest edition of MongoDB from [here](https://www.mongodb.org/downloads#production).
+* Download and install the latest edition of Ruby from [here](http://rubyinstaller.org/downloads/)
+* Download and install the latest edition of the Ruby SDK from [here](http://rubyinstaller.org/downloads/)
+* For installation on Windows, refer [these](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
+* Download and install the latest edition of MongoDB from [here](https://www.mongodb.org/downloads#production)
 * Within the root directory, install all dependencies with `bundle install`
 * Create a .env file in the project's root directory, as follows
 
@@ -28,13 +28,13 @@
     TW_ID=Twitter_application_id
     TW_KEY=Twitter_application_secret_key
 ```
-    
-* Start the localhost MongoDB server via mongod  
+
+* Start the localhost MongoDB server via mongod
 * Start the localhost server with `rails s`
 
 ##### View at localhost:3000
 
-> TODO
+> Tasks
 
 * [ ] #12
 * [ ] #11
